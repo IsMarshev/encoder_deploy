@@ -4,6 +4,7 @@ import torch
 import onnxruntime
 from transformers import AutoTokenizer
 from onnxruntime import InferenceSession, SessionOptions
+import argparse
 
 app = Flask(__name__)
 model_name = 'ai-forever/ruElectra-small'
@@ -76,8 +77,19 @@ def predict():
     data = request.get_json()
     text = data.get('text', [])
     outputs = onnx_inference([text], session, tokenizer, 512)
-    print(outputs)
+    if outputs: 
+        print('OK')
+    else:
+        print('Error')
     return jsonify({'response': outputs})
 
+@app.route('/', methods=['POST'])
+def main():
+    data = request.get_json()
+    return jsonify(received_data=data, message="Response from server")
+
 if __name__ == '__main__':
-    app.run()
+    parser = argparse.ArgumentParser(description='Flask app')
+    parser.add_argument('--port', type=int, default=5000, help='Port to run the Flask app on')
+    args = parser.parse_args()
+    app.run(port=args.port)
