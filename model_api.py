@@ -7,13 +7,11 @@ from onnxruntime import InferenceSession, SessionOptions
 import argparse
 
 app = Flask(__name__)
-model_name = 'ai-forever/ruElectra-small'
-tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 def create_onnx_session(
         model_path: str,
         provider: str = "CPUExecutionProvider",
-        num_threads: int = 4
+        num_threads: int = 2
         ) -> InferenceSession:
     """Создание сессии для инференса модели с помощью ONNX Runtime.
 
@@ -70,26 +68,30 @@ def onnx_inference(
         results.append(final_predictions)
     return results
 
-session = create_onnx_session('ruElectra-small-onnx-quantized.onnx', 4)
-
 @app.route('/predict', methods = ['POST'])
 def predict():
     data = request.get_json()
     text = data.get('text', [])
-    outputs = onnx_inference([text], session, tokenizer, 512)
+    outputs = onnx_inference(text, session, tokenizer, 512)
     if outputs: 
         print('OK')
     else:
         print('Error')
     return jsonify({'response': outputs})
 
-@app.route('/', methods=['POST'])
-def main():
-    data = request.get_json()
-    return jsonify(received_data=data, message="Response from server")
+@app.route('/', methods=['GET'])
+def check_state():
+    return 'OK'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Flask app')
+
     parser.add_argument('--port', type=int, default=5000, help='Port to run the Flask app on')
+    parser.add_argument('--num_threads', type=int, default=1, help='Port to run the Flask app on')
     args = parser.parse_args()
+
+    session = create_onnx_session('ruElectra-small-onnx-quantized.onnx', args.num_threads)
+    model_name = 'ai-forever/ruElectra-small'
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+
     app.run(port=args.port)
