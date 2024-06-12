@@ -11,7 +11,7 @@ app = Flask(__name__)
 def create_onnx_session(
         model_path: str,
         provider: str = "CPUExecutionProvider",
-        num_threads: int = 2
+        num_threads: int = 4
         ) -> InferenceSession:
     """Создание сессии для инференса модели с помощью ONNX Runtime.
 
@@ -68,6 +68,10 @@ def onnx_inference(
         results.append(final_predictions)
     return results
 
+session = create_onnx_session('ruElectra-small-onnx-quantized.onnx', 1)
+model_name = 'ai-forever/ruElectra-small'
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
 @app.route('/predict', methods = ['POST'])
 def predict():
     data = request.get_json()
@@ -90,8 +94,8 @@ if __name__ == '__main__':
     parser.add_argument('--num_threads', type=int, default=1, help='Port to run the Flask app on')
     args = parser.parse_args()
 
-    session = create_onnx_session('./src/app/ruElectra-small-onnx-quantized.onnx', args.num_threads)
-    model_name = 'ai-forever/ruElectra-small'
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    print("ITS MAIN")
+
+    
 
     app.run(host='0.0.0.0', port=args.port)
