@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="upload-section">
+            <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+                <label for="file-upload" class="custom-file-upload">{{ filename if filename else 'Выберите файл' }}</label>
+                <input id="file-upload" type="file" name="file" onchange="checkFileSelected()">
+                <button type="submit" id='upload' class = 'upload'>Загрузить</button>
+            </form>
+            <!-- <div class="file-name" id="file-name">{{ filename if filename else '' }}</div> -->
+        </div>
+        <div class="content" id = 'content'>
+            <div class="id-list">
+                <ul id="id-list">
+                    {% for i in id_data %}
+                        <li><a href="#" class="button-link" data-id="{{ i }}" data-filename="{{ filename }}">{{ i }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="file-content hidden" id="file-content">
+                <p class = 'text-content' id = 'file-text-content'></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkFileSelected() {
+            var fileInput = document.getElementById('file-upload');
+            var uploadButton = document.getElementById('upload');
+            
+            console.log(fileInput.files.length )
+            
+
+            if (fileInput.files.length > 0) {
+                uploadButton.style.display = 'inline-block';  // Показываем кнопку
+            } else {
+                uploadButton.style.display = 'none';
+                var Content = document.getElementById('content');
+                Content.style.display = 'none';
+            }
+        }
+        </script>
+
+    <script>
+        document.getElementById('id-list').addEventListener('click', function(e){
+            if(e.target && e.target.nodeName == "A") {
+                e.preventDefault(); // Prevent default link behavior
+                const id = e.target.getAttribute('data-id');
+                const filename = e.target.getAttribute('data-filename');
+                fetch(`/content/${id}?filename=${filename}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const fileContent = document.getElementById('file-content')
+                        document.getElementById('file-text-content').innerHTML = data.content;
+                        fileContent.classList.remove('hidden');
+                        console.log(fileContent.classList)
+                    });
+            }
+        });
+
+        // document.getElementById('file-upload').addEventListener('change', function(){
+        //     document.getElementById('file-name').innerText = this.files[0].name;
+        // });
+
+        // document.getElementById('upload').addEventListener('change', function(){
+        //     document.getElementById('file-name').innerText = this.files[0].name;
+        // });
+    </script>
+</body>
+</html>

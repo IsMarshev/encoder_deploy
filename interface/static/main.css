@@ -1,0 +1,186 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.container {
+    padding: 20px;
+    /* width: 80%; */
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.upload-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.custom-file-upload {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 10px;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.file-input {
+    display: none;
+}
+
+.upload {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: none;
+}
+
+.upload:hover {
+    background-color: #1b1b1b;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+#file-upload {
+    display: none;
+}
+
+.file-name {
+    align-self: center;
+    margin-left: 20px;
+}
+
+.content {
+    display: flex;
+    padding-left: 20px;
+    border-top: 1px solid #ddd
+}
+
+.id-list {
+    max-height: calc(100vh - 150px); /* Set the max height as needed */
+    overflow-y: auto; /* Enable vertical scroll */
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#id-list {
+    list-style: none;
+    padding-right: 20px;
+}
+
+#id-list li {
+    margin-bottom: 10px;
+}
+
+
+#id-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.file-content {
+    flex: 3;
+    padding-left: 20px;
+}
+.hidden{
+    display: none;
+}
+/* General reset for links */
+a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0;
+    background-color: transparent;
+    width: 200px; /* Set a fixed width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Hover effect */
+a:hover {
+    color: white;
+    background-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Focused state for accessibility */
+a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/* Visited state */
+a:visited {
+    color: #551a8b;
+}
+
+/* Active state */
+a:active {
+    color: white;
+    background-color: #0056b3;
+    border-color: #207ee3;
+    box-shadow: 0 6px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Styling for links with a button-like appearance */
+.button-link {
+    /* color: white; */
+    border-color: #0056b3;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+
+.button-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(7, 127, 255, 0.5);
+}
+
+
+p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Современный шрифт */
+    font-size: 18px; /* Увеличенный размер шрифта для лучшей читаемости */
+    line-height: 1.6; /* Увеличенное межстрочное расстояние для лучшей читаемости */
+    color: #333; /* Насыщенный серый цвет текста */
+    margin: 20px 0; /* Верхний и нижний отступы */
+    padding: 10px 15px; /* Внутренние отступы */
+    border-left: 4px solid #007bff; /* Цветная левая граница для акцента */
+    background-color: #f9f9f9; /* Светло-серый фон */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Плавные переходы */
+}
+
+p:hover {
+    background-color: #f1f1f1; /* Изменение фона при наведении */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Увеличение тени при наведении */
+}
