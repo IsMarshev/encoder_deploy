@@ -9,5 +9,31 @@
 
 •  Собрать докер контейнер:
 
-	docker compose up	
-<h2>P.S Ожидайте сборки docker файла, примерно время сборки - 15 минут</h2>
+	docker compose up
+ 
+ •  Стучаться к API:
+
+	http://localhost:5000/predict
+ 
+<h3>P.S Ожидайте сборки docker файла, примерно время сборки - 15 минут</h3>
+<h2>Развертывание демо стенда</h2>
+•  Клонировать репозиторий:
+
+	git clone https://github.com/IsMarshev/encoder_deploy
+
+•  Перейти в директорию проекта:
+
+	cd encoder_deploy/interface
+
+•  Выполнить запуск flask приложения:
+
+	python app.py
+ 
+ •  Перейти по ссылке:
+
+  	http://127.0.0.1:8080/
+   
+<h3>Cсылки </h3>
+	 <a href = "https://disk.yandex.ru/i/fZYwqZi20gFfGw">Сопроводительная документаци</a><br>
+ 	 <a href = "https://disk.yandex.ru/i/QsSPS9zE9xmvAw">Скринкаст</a><br>
+   	 <a href = "https://disk.yandex.ru/d/Hfl89bJK1Wv9Ag">Оригинальная модель</a>
