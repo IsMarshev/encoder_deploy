@@ -34,5 +34,7 @@
   	http://127.0.0.1:8080/
    
 <h3>Ссылка на скринкаст и сопроводительную документацию: </h3>
-	<a href = "https://disk.yandex.ru/i/fZYwqZi20gFfGw">Сопроводительная документаци</a>
- 	<a href = "https://disk.yandex.ru/i/QsSPS9zE9xmvAw">Скринкаст</a>
+
+	• <a href = "https://disk.yandex.ru/i/fZYwqZi20gFfGw">Сопроводительная документаци</a>
+ 
+ 	• <a href = "https://disk.yandex.ru/i/QsSPS9zE9xmvAw">Скринкаст</a>
