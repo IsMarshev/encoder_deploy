@@ -35,5 +35,5 @@
    
 <h3>Cсылки </h3>
 	 <a href = "https://disk.yandex.ru/i/fZYwqZi20gFfGw">Сопроводительная документаци</a><br>
- 	 <a href = "https://disk.yandex.ru/i/QsSPS9zE9xmvAw">Скринкаст</a>
+ 	 <a href = "https://disk.yandex.ru/i/QsSPS9zE9xmvAw">Скринкаст</a><br>
    	 <a href = "https://disk.yandex.ru/d/Hfl89bJK1Wv9Ag">Оригинальная модель</a>
