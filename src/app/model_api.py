@@ -6,7 +6,6 @@ from transformers import AutoTokenizer
 from onnxruntime import InferenceSession, SessionOptions
 import argparse
 import gdown
-import pandas as pd
 
 
 url = 'https://drive.google.com/file/d/1oQyt2WAmBGMbHk4p0jA_idp5C012QV6B/view?usp=drive_link'  # I'm showing a fake token
