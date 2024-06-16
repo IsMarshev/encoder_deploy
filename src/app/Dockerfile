@@ -1,11 +1,10 @@
 FROM python:3.10
 
-RUN python -m pip install flask flask-cors gunicorn torch numpy onnxruntime transformers
+RUN python3 -m pip install flask flask-cors gunicorn torch numpy==1.26 onnxruntime transformers gdown
 
 WORKDIR /app
 
 ADD model_api.py model_api.py
-ADD ruElectra-small-onnx-quantized.onnx ruElectra-small-onnx-quantized.onnx
 
 EXPOSE 5000
 

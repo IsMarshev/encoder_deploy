@@ -5,8 +5,16 @@ import onnxruntime
 from transformers import AutoTokenizer
 from onnxruntime import InferenceSession, SessionOptions
 import argparse
+import gdown
+import pandas as pd
+
+
+url = 'https://drive.google.com/file/d/1oQyt2WAmBGMbHk4p0jA_idp5C012QV6B/view?usp=drive_link'  # I'm showing a fake token
+gdown.download(url, '/app/model-onnx-quantized.onnx', quiet = False, fuzzy = True)
+
 
 app = Flask(__name__)
+
 
 def create_onnx_session(
         model_path: str,
@@ -26,6 +34,7 @@ def create_onnx_session(
     session = InferenceSession(model_path, options, providers=[provider])
     session.disable_fallback()
     return session
+
 
 def onnx_inference(
         text: list,
@@ -68,7 +77,7 @@ def onnx_inference(
         results.append(final_predictions)
     return results
 
-session = create_onnx_session('ruElectra-small-onnx-quantized.onnx', 1)
+session = create_onnx_session('./model-onnx-quantized.onnx', 1)
 model_name = 'ai-forever/ruElectra-small'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
@@ -76,6 +85,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 def predict():
     data = request.get_json()
     text = data.get('text', [])
+    
     outputs = onnx_inference(text, session, tokenizer, 512)
     if outputs: 
         print('OK')
